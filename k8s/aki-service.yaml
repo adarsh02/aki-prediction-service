@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: aki-detection
+  namespace: hospital
+spec:
+  selector:
+    app: aki-detection
+  ports:
+    - port: 8000
+      targetPort: 8000

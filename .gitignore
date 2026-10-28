@@ -1,0 +1,19 @@
+# Jupyter Notebook checkpoints (anywhere)
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# Virtual environments
+senv/
+*/senv/
+
+# Python cache
+__pycache__/
+*/__pycache__/
+*.pyc
+
+# SQLite / local databases
+*.db
+
+# Logs directories
+logs/
+*/logs/

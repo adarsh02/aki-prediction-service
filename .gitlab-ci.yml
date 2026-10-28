@@ -1,0 +1,51 @@
+# GitLab CI/CD pipeline for AKI Prediction Service
+image: python:3.12.3
+
+stages:
+  # - build
+  - test
+  # - e2e
+  # - deploy
+
+# build-job:
+#   stage: build
+#   script:
+#     - echo "Building application..."
+#     - echo "Build complete."
+
+run-tests:
+  stage: test
+  image: python:3.12.3
+  before_script:
+    - pip install --upgrade pip
+    - pip install -r requirements.txt
+  script:
+    - echo "Running unit and integration tests..."
+    - cd app
+    - bash tests/run_tests.sh
+
+# End-to-end Docker tests (runs after both test jobs succeed)
+# e2e-tests:
+#   stage: e2e
+#   image: docker:27
+#   services:
+#     - name: docker:27-dind
+#       alias: docker
+#   variables:
+#     DOCKER_HOST: tcp://docker:2375
+#     DOCKER_TLS_CERTDIR: ""
+#   script:
+#     - echo "Running end-to-end Docker tests..."
+#     - docekr info
+#     - cd simulator
+#     - sh test_e2e.sh
+#   tags:
+#     - privileged-runner
+
+# Deployment job (runs last, only if all previous jobs succeed)
+# deploy-job:
+#   stage: deploy
+#   environment: production
+#   script:
+#     - echo "Deploying application..."
+#     - echo "Deployment complete."
